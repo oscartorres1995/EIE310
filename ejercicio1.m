@@ -1,6 +1,14 @@
-A=1; B=9; C=2; D=1; E=4;
-t= 0 : 0.3 : 30; v= exp(-((B+A)/(2*C*(D+E)))*t).*sin(t);
-subplot 121; plot(t, v); title('PLOT');
-xlabel('Tiempo (seg)'); ylabel('Volts'); grid;
-subplot 122; stem(t, v); title('STEM');
-xlabel('Tiempo (seg)'); ylabel('Volts'); grid;
+load h.txt
+subplot 221;
+plot(h, '.');
+grid
+xlabel('n');
+title('h(n)');
+f = 0 : 100 : 180000;
+M = abs(freqz(h,1,f,176400));
+subplot 223;
+semilogy(f/1000, M);
+grid;
+axis([0 180 0.000001 10]);
+xlabel('f[kHz]');
+title('Mag[H(f)]');
